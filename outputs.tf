@@ -26,8 +26,3 @@ output "watson_discovery_dashboard_url" {
   description = "The dashboard URL of the Watson Discovery instance."
   value       = local.watson_discovery_dashboard_url
 }
-
-output "resource_group_id" {
-  value       = module.resource_group.resource_group_id
-  description = "The resource group ID that's used to provision the resources."
-}

@@ -11,14 +11,14 @@ module "resource_group" {
 }
 
 ########################################################################################################################
-# COS instance
+# Watson Discovery
 ########################################################################################################################
 
-resource "ibm_resource_instance" "cos_instance" {
-  name              = "${var.prefix}-cos"
-  resource_group_id = module.resource_group.resource_group_id
-  service           = "cloud-object-storage"
-  plan              = "standard"
-  location          = "global"
-  tags              = var.resource_tags
+module "watson_discovery" {
+  source                = "../../"
+  region                = var.region
+  watson_discovery_name = "${var.prefix}-discovery"
+  resource_group_id     = module.resource_group.resource_group_id
+  resource_tags         = var.resource_tags
+  access_tags           = var.access_tags
 }

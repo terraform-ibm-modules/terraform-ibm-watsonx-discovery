@@ -66,7 +66,7 @@ variable "watson_discovery_name" {
 }
 
 variable "plan" {
-  description = "The plan that is required to provision the watson Discovery instance." #TODO: To add info about plans where svc endpoint info is needed.
+  description = "The plan that is required to provision the watson Discovery instance."
   type        = string
   default     = "plus"
 
@@ -85,7 +85,7 @@ variable "plan" {
 }
 
 variable "service_endpoints" {
-  description = "Types of the service endpoints that can be set to a watson Discovery instance. Possible values are : 'public', 'private' or 'public-and-private'." #TODO: Info about account that do not have info.
+  description = "Types of the service endpoints that can be set to a Watson Discovery instance. Possible values are : 'public', 'private' or 'public-and-private'."
   type        = string
   default     = "public-and-private"
   validation {

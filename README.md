@@ -19,9 +19,9 @@ Expand on the repo short description in the .github/settings.yml file.
 For information, see "Module names and descriptions" at
 https://terraform-ibm-modules.github.io/documentation/#/implementation-guidelines?id=module-names-and-descriptions
 -->
+The IBM watsonx Discovery Terraform Module is designed to automate the deployment and configuration of IBM Watson Discovery,which is an intelligent document processing engine that helps to gain insights from complex business documents.
 
-TODO: Replace this with a description of the modules in this repo.
-
+For further information on IBM Watson Discovery, including supported features, plans, and regions, please refer the official Watson Discovery [documentation](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-about)
 
 <!-- The following content is automatically populated by the pre-commit hook -->
 <!-- BEGIN OVERVIEW HOOK -->
@@ -56,6 +56,11 @@ unless real values don't help users know what to change.
 -->
 
 ```hcl
+module "watson_discovery" {
+  source                = "terraform-ibm-modules/watsonx-discovery/ibm"
+  watson_discovery_name = "watson-discovery"
+  resource_group_id     = module.resource_group.resource_group_id
+}
 
 ```
 
@@ -82,6 +87,20 @@ You need the following permissions to run this module:
         - `Editor` platform access
         - `Manager` service access
 -->
+You need the following permissions to run this module:
+
+* Account Management
+  * **Resource Group**
+        - `Administrator` role
+* IAM Services
+  * **Watson Discovery** service
+        - `Editor` platform access
+
+To attach access management tags to resources in this module, you need the following permissions.
+
+- IAM Services
+    - **Tagging** service
+        - `Administrator` platform access
 
 <!-- NO PERMISSIONS FOR MODULE
 If no permissions are required for the module, uncomment the following
@@ -122,7 +141,7 @@ No modules.
 | <a name="input_region"></a> [region](#input\_region) | Region where watson Discovery instance will be provisioned. Required if creating a new instance. If using an existing instance, this can be null. | `string` | `"us-south"` | no |
 | <a name="input_resource_group_id"></a> [resource\_group\_id](#input\_resource\_group\_id) | The resource group ID where the watson Discovery instance will be grouped. Required when creating a new instance. | `string` | `null` | no |
 | <a name="input_resource_tags"></a> [resource\_tags](#input\_resource\_tags) | Optional list of tags to describe the watson Discovery instance. | `list(string)` | `[]` | no |
-| <a name="input_service_endpoints"></a> [service\_endpoints](#input\_service\_endpoints) | Types of the service endpoints that can be set to a watson Discovery instance. Possible values are : 'public', 'private' or 'public-and-private'. | `string` | `"public-and-private"` | no |
+| <a name="input_service_endpoints"></a> [service\_endpoints](#input\_service\_endpoints) | Types of the service endpoints that can be set to a Watson Discovery instance. Possible values are : 'public', 'private' or 'public-and-private'. | `string` | `"public-and-private"` | no |
 | <a name="input_watson_discovery_name"></a> [watson\_discovery\_name](#input\_watson\_discovery\_name) | The name of the watson Discovery instance. Required if creating a new instance. | `string` | `null` | no |
 
 ### Outputs

@@ -9,20 +9,20 @@ output "crn" {
 
 output "name" {
   description = "Name of the existing Watson Discovery instance"
-  value       = module.existing_watson_discovery_instance.name
+  value       = module.watson_discovery.name
 }
 
 output "guid" {
   description = "GUID of the existing Watson Discovery instance"
-  value       = module.existing_watson_discovery_instance.guid
+  value       = module.watson_discovery.guid
 }
 
 output "plan_id" {
   description = "Plan ID of the existing Watson Discovery instance."
-  value       = module.existing_watson_discovery_instance.plan_id
+  value       = module.watson_discovery.plan_id
 }
 
 output "dashboard_url" {
   description = "Dashboard URL of the existing Watson Discovery instance."
-  value       = module.existing_watson_discovery_instance.dashboard_url
+  value       = module.watson_discovery.dashboard_url
 }

@@ -82,10 +82,7 @@ func TestRunUpgradeExample(t *testing.T) {
 func TestRunExistingResourcesExample(t *testing.T) {
 	t.Parallel()
 
-	// ------------------------------------------------------------------------------------
 	// Provision Watson Discovery instance
-	// ------------------------------------------------------------------------------------
-
 	prefix := fmt.Sprintf("ex-discovery-%s", strings.ToLower(random.UniqueId()))
 	realTerraformDir := ".."
 	tempTerraformDir, _ := files.CopyTerraformFolderToTemp(realTerraformDir, fmt.Sprintf(prefix+"-%s", strings.ToLower(random.UniqueId())))
@@ -115,19 +112,25 @@ func TestRunExistingResourcesExample(t *testing.T) {
 	if existErr != nil {
 		assert.True(t, existErr == nil, "Init and Apply of temp existing resource failed")
 	} else {
-		options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
-			Testing:      t,
-			TerraformDir: existingExampleDir,
-			// Do not hard fail the test if the implicit destroy steps fail to allow a full destroy of resource to occur
-			ImplicitRequired: false,
-			TerraformVars: map[string]interface{}{
-				"existing_watson_discovery_instance_crn": terraform.Output(t, existingTerraformOptions, "crn"),
-			},
-		})
+		outputs, err := terraform.OutputAllE(t, existingTerraformOptions)
+		require.NoError(t, err, "Failed to retrieve Terraform outputs")
+		expectedOutputs := []string{"crn", "guid", "name", "plan_id", "dashboard_url"}
+		_, tfOutputsErr := testhelper.ValidateTerraformOutputs(outputs, expectedOutputs...)
+		if assert.Nil(t, tfOutputsErr, tfOutputsErr) {
+			options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
+				Testing:      t,
+				TerraformDir: existingExampleDir,
+				// Do not hard fail the test if the implicit destroy steps fail to allow a full destroy of resource to occur
+				ImplicitRequired: false,
+				TerraformVars: map[string]interface{}{
+					"existing_watson_discovery_instance_crn": terraform.Output(t, existingTerraformOptions, "crn"),
+				},
+			})
 
-		output, err := options.RunTestConsistency()
-		assert.Nil(t, err, "This should not have errored")
-		assert.NotNil(t, output, "Expected some output")
+			output, err := options.RunTestConsistency()
+			assert.Nil(t, err, "This should not have errored")
+			assert.NotNil(t, output, "Expected some output")
+		}
 	}
 
 	// Check if "DO_NOT_DESTROY_ON_FAILURE" is set

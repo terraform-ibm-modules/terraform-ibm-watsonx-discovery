@@ -8,12 +8,12 @@ variable "resource_group_id" {
   default     = null
   validation {
     condition     = var.existing_watson_discovery_instance_crn == null ? length(var.resource_group_id) > 0 : true
-    error_message = "You must specify a value for \"resource_group_id\" if \"existing_watson_discovery_instance_crn\" is null."
+    error_message = "You must specify a value for 'resource_group_id' if 'existing_watson_discovery_instance_crn' is null."
   }
 }
 
 variable "region" {
-  description = "Region where watson Discovery instance will be provisioned. Required if creating a new instance. If using an existing instance, this can be null."
+  description = "Region where watson Discovery instance will be provisioned. Required if creating a new instance."
   type        = string
   default     = "us-south"
 
@@ -26,19 +26,19 @@ variable "region" {
       var.region == "us-east",
       var.region == "us-south",
     ])
-    error_message = "Region must be specified and set to one of the permitted values (\"eu-de\", \"eu-gb\", \"jp-tok\", \"us-south\", \"au-syd\", \"us-east\") when provisioning a new instance."
+    error_message = "Region must be specified and set to one of the permitted values ('eu-de', 'eu-gb', 'jp-tok', 'us-south', 'au-syd', 'us-east') when provisioning a new instance."
   }
 }
 
 variable "resource_tags" {
-  description = "Optional list of tags to describe the watson Discovery instance."
+  description = "Optional list of tags to describe the watson Discovery instance created by the module."
   type        = list(string)
   default     = []
 }
 
 variable "access_tags" {
   type        = list(string)
-  description = "A list of access tags to apply to the watson Discovery instance created by the module. For more information, see https://cloud.ibm.com/docs/account?topic=account-access-tags-tutorial."
+  description = "A list of access tags to apply to the watson Discovery instance. For more information, see https://cloud.ibm.com/docs/account?topic=account-access-tags-tutorial."
   default     = []
 
   validation {
@@ -50,7 +50,7 @@ variable "access_tags" {
 }
 
 variable "existing_watson_discovery_instance_crn" {
-  description = "The CRN of an existing watson Discovery instance."
+  description = "The CRN of an existing watson Discovery instance. If not provided, a new instance will be provisioned."
   type        = string
   default     = null
 }
@@ -66,7 +66,7 @@ variable "watson_discovery_name" {
 }
 
 variable "plan" {
-  description = "The plan that is required to provision the watson Discovery instance."
+  description = "The plan that is required to provision the watson Discovery instance. Possible values are: plus, enterprise, premium."
   type        = string
   default     = "plus"
 
@@ -80,7 +80,7 @@ variable "plan" {
       var.plan == "enterprise",
       var.plan == "premium",
     ]) || var.existing_watson_discovery_instance_crn != null
-    error_message = "A new watson Discovery instance requires a \"plus\", \"enterprise\", or \"premium\" plan. [Learn more](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-pricing-plans)."
+    error_message = "A new watson Discovery instance requires a 'plus', 'enterprise', or 'premium' plan. [Learn more](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-pricing-plans)."
   }
 }
 
@@ -90,6 +90,6 @@ variable "service_endpoints" {
   default     = "public-and-private"
   validation {
     condition     = contains(["public", "public-and-private", "private"], var.service_endpoints)
-    error_message = "The specified service endpoint is not valid. Supported options are \"public\", \"private\", \"public-and-private\"."
+    error_message = "The specified service endpoint is not valid. Supported options are 'public', 'private', 'public-and-private'."
   }
 }

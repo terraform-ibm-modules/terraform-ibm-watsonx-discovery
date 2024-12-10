@@ -91,7 +91,7 @@ You need the following permissions to run this module:
 
 * Account Management
   * **Resource Group**
-        - `Administrator` role
+        - `Viewer` role
 * IAM Services
   * **Watson Discovery** service
         - `Editor` platform access
@@ -135,12 +135,12 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_access_tags"></a> [access\_tags](#input\_access\_tags) | A list of access tags to apply to the watson Discovery instance created by the module. For more information, see https://cloud.ibm.com/docs/account?topic=account-access-tags-tutorial. | `list(string)` | `[]` | no |
-| <a name="input_existing_watson_discovery_instance_crn"></a> [existing\_watson\_discovery\_instance\_crn](#input\_existing\_watson\_discovery\_instance\_crn) | The CRN of an existing watson Discovery instance. | `string` | `null` | no |
-| <a name="input_plan"></a> [plan](#input\_plan) | The plan that is required to provision the watson Discovery instance. | `string` | `"plus"` | no |
-| <a name="input_region"></a> [region](#input\_region) | Region where watson Discovery instance will be provisioned. Required if creating a new instance. If using an existing instance, this can be null. | `string` | `"us-south"` | no |
+| <a name="input_access_tags"></a> [access\_tags](#input\_access\_tags) | A list of access tags to apply to the watson Discovery instance. For more information, see https://cloud.ibm.com/docs/account?topic=account-access-tags-tutorial. | `list(string)` | `[]` | no |
+| <a name="input_existing_watson_discovery_instance_crn"></a> [existing\_watson\_discovery\_instance\_crn](#input\_existing\_watson\_discovery\_instance\_crn) | The CRN of an existing watson Discovery instance. If not provided, a new instance will be provisioned. | `string` | `null` | no |
+| <a name="input_plan"></a> [plan](#input\_plan) | The plan that is required to provision the watson Discovery instance. Possible values are: plus, enterprise, premium. | `string` | `"plus"` | no |
+| <a name="input_region"></a> [region](#input\_region) | Region where watson Discovery instance will be provisioned. Required if creating a new instance. | `string` | `"us-south"` | no |
 | <a name="input_resource_group_id"></a> [resource\_group\_id](#input\_resource\_group\_id) | The resource group ID where the watson Discovery instance will be grouped. Required when creating a new instance. | `string` | `null` | no |
-| <a name="input_resource_tags"></a> [resource\_tags](#input\_resource\_tags) | Optional list of tags to describe the watson Discovery instance. | `list(string)` | `[]` | no |
+| <a name="input_resource_tags"></a> [resource\_tags](#input\_resource\_tags) | Optional list of tags to describe the watson Discovery instance created by the module. | `list(string)` | `[]` | no |
 | <a name="input_service_endpoints"></a> [service\_endpoints](#input\_service\_endpoints) | Types of the service endpoints that can be set to a Watson Discovery instance. Possible values are : 'public', 'private' or 'public-and-private'. | `string` | `"public-and-private"` | no |
 | <a name="input_watson_discovery_name"></a> [watson\_discovery\_name](#input\_watson\_discovery\_name) | The name of the watson Discovery instance. Required if creating a new instance. | `string` | `null` | no |
 
@@ -148,11 +148,11 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_watson_discovery_crn"></a> [watson\_discovery\_crn](#output\_watson\_discovery\_crn) | The CRN of the Watson Discovery instance. |
-| <a name="output_watson_discovery_dashboard_url"></a> [watson\_discovery\_dashboard\_url](#output\_watson\_discovery\_dashboard\_url) | The dashboard URL of the Watson Discovery instance. |
-| <a name="output_watson_discovery_guid"></a> [watson\_discovery\_guid](#output\_watson\_discovery\_guid) | The GUID of the Watson Discovery instance. |
-| <a name="output_watson_discovery_name"></a> [watson\_discovery\_name](#output\_watson\_discovery\_name) | The name of the Watson Discovery instance. |
-| <a name="output_watson_discovery_plan_id"></a> [watson\_discovery\_plan\_id](#output\_watson\_discovery\_plan\_id) | The plan ID of the Watson Discovery instance. |
+| <a name="output_crn"></a> [crn](#output\_crn) | The CRN of the Watson Discovery instance. |
+| <a name="output_dashboard_url"></a> [dashboard\_url](#output\_dashboard\_url) | The dashboard URL of the Watson Discovery instance. |
+| <a name="output_guid"></a> [guid](#output\_guid) | The GUID of the Watson Discovery instance. |
+| <a name="output_name"></a> [name](#output\_name) | The name of the Watson Discovery instance. |
+| <a name="output_plan_id"></a> [plan\_id](#output\_plan\_id) | The plan ID of the Watson Discovery instance. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 <!-- Leave this section as is so that your module has a link to local development environment set-up steps for contributors to follow -->

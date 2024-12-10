@@ -4,13 +4,13 @@
 
 variable "ibmcloud_api_key" {
   type        = string
-  description = "The IBM Cloud API Key."
+  description = "The IBM Cloud API Key"
   sensitive   = true
 }
 
 variable "prefix" {
   type        = string
-  description = "Prefix for name of all resource created by this example"
+  description = "Prefix for name of all resources created by this example"
   default     = "watson"
   validation {
     error_message = "Prefix must begin and end with a letter and contain only letters, numbers, and - characters."

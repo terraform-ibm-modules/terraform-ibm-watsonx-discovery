@@ -2,27 +2,27 @@
 # Outputs
 ########################################################################################################################
 
-output "watson_discovery_crn" {
+output "crn" {
   description = "The CRN of the Watson Discovery instance."
   value       = local.watson_discovery_crn
 }
 
-output "watson_discovery_guid" {
+output "guid" {
   description = "The GUID of the Watson Discovery instance."
   value       = local.watson_discovery_guid
 }
 
-output "watson_discovery_name" {
+output "name" {
   description = "The name of the Watson Discovery instance."
   value       = local.watson_discovery_name
 }
 
-output "watson_discovery_plan_id" {
+output "plan_id" {
   description = "The plan ID of the Watson Discovery instance."
   value       = local.watson_discovery_plan_id
 }
 
-output "watson_discovery_dashboard_url" {
+output "dashboard_url" {
   description = "The dashboard URL of the Watson Discovery instance."
   value       = local.watson_discovery_dashboard_url
 }

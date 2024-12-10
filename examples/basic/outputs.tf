@@ -4,17 +4,17 @@
 
 output "crn" {
   description = "CRN of the watson Discovery instance"
-  value       = module.watson_discovery.watson_discovery_crn
+  value       = module.watson_discovery.crn
 }
 
 output "guid" {
   description = "GUID of the watson Discovery instance"
-  value       = module.watson_discovery.watson_discovery_guid
+  value       = module.watson_discovery.guid
 }
 
 output "name" {
   description = "Name of the watson Discovery instance"
-  value       = module.watson_discovery.watson_discovery_name
+  value       = module.watson_discovery.name
 }
 
 output "resource_group_id" {

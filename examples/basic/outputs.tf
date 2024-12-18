@@ -2,6 +2,11 @@
 # Outputs
 ########################################################################################################################
 
+output "account_id" {
+  description = "Account ID of the watson Discovery instance"
+  value       = module.watson_discovery.account_id
+}
+
 output "crn" {
   description = "CRN of the watson Discovery instance"
   value       = module.watson_discovery.crn

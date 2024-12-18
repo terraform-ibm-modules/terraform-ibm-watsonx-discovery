@@ -19,7 +19,7 @@ Expand on the repo short description in the .github/settings.yml file.
 For information, see "Module names and descriptions" at
 https://terraform-ibm-modules.github.io/documentation/#/implementation-guidelines?id=module-names-and-descriptions
 -->
-The IBM watsonx Discovery Terraform Module is designed to automate the deployment and configuration of IBM Watson Discovery,which is an intelligent document processing engine that helps to gain insights from complex business documents.
+The IBM watsonx Discovery Terraform module is designed to automate the deployment and configuration of IBM Watson Discovery,which is an intelligent document processing engine that helps to gain insights from complex business documents.
 
 For further information on IBM Watson Discovery, including supported features, plans, and regions, please refer the official Watson Discovery [documentation](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-about)
 
@@ -29,7 +29,7 @@ For further information on IBM Watson Discovery, including supported features, p
 * [terraform-ibm-watsonx-discovery](#terraform-ibm-watsonx-discovery)
 * [Examples](./examples)
     * [Basic example](./examples/basic)
-    * [Existing Instance example](./examples/existing-instance)
+    * [Existing instance example](./examples/existing-instance)
 * [Contributing](#contributing)
 <!-- END OVERVIEW HOOK -->
 
@@ -45,6 +45,8 @@ https://terraform-ibm-modules.github.io/documentation/#/implementation-guideline
 
 <!-- Replace this heading with the name of the root level module (the repo name) -->
 ## terraform-ibm-watsonx-discovery
+
+This module supports provisioning the watson Discovery instance with a selectable service plan.
 
 ### Usage
 
@@ -77,16 +79,6 @@ console at Manage > Access (IAM) > Access groups and click into an existing grou
 (or create a new one) and in the 'Access' tab click 'Assign access'.
 -->
 
-<!--
-You need the following permissions to run this module:
-
-- Service
-    - **Resource group only**
-        - `Viewer` access on the specific resource group
-    - **Sample IBM Cloud** service
-        - `Editor` platform access
-        - `Manager` service access
--->
 You need the following permissions to run this module:
 
 * Account Management
@@ -121,7 +113,9 @@ statement instead the previous block.
 
 ### Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_crn_parser"></a> [crn\_parser](#module\_crn\_parser) | terraform-ibm-modules/common-utilities/ibm//modules/crn-parser | 1.1.0 |
 
 ### Resources
 
@@ -148,9 +142,11 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_account_id"></a> [account\_id](#output\_account\_id) | Account ID of the watson Discovery instance. |
 | <a name="output_crn"></a> [crn](#output\_crn) | The CRN of the Watson Discovery instance. |
 | <a name="output_dashboard_url"></a> [dashboard\_url](#output\_dashboard\_url) | The dashboard URL of the Watson Discovery instance. |
 | <a name="output_guid"></a> [guid](#output\_guid) | The GUID of the Watson Discovery instance. |
+| <a name="output_id"></a> [id](#output\_id) | ID of the watson Discovery instance. |
 | <a name="output_name"></a> [name](#output\_name) | The name of the Watson Discovery instance. |
 | <a name="output_plan_id"></a> [plan\_id](#output\_plan\_id) | The plan ID of the Watson Discovery instance. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

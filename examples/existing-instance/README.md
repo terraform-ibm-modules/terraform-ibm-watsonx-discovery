@@ -1,4 +1,4 @@
-# Existing Instance example
+# Existing instance example
 
 - This example illustrates the process of retrieving configuration details for an existing [Watson Discovery](https://github.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery) instance.
 

@@ -2,8 +2,18 @@
 # Outputs
 ########################################################################################################################
 
+output "account_id" {
+  description = "Account ID of the existing watson Discovery instance"
+  value       = module.watson_discovery.account_id
+}
+
+output "id" {
+  description = "ID of the watson Discovery instance."
+  value       = module.watson_discovery.id
+}
+
 output "crn" {
-  description = "CRN of the watson Discovery instance"
+  description = "CRN of the existing watson Discovery instance"
   value       = module.watson_discovery.crn
 }
 

@@ -2,6 +2,16 @@
 # Outputs
 ########################################################################################################################
 
+output "account_id" {
+  description = "Account ID of the watson Discovery instance."
+  value       = local.account_id
+}
+
+output "id" {
+  description = "ID of the watson Discovery instance."
+  value       = local.watson_discovery_id
+}
+
 output "crn" {
   description = "The CRN of the Watson Discovery instance."
   value       = local.watson_discovery_crn

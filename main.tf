@@ -3,11 +3,20 @@
 # watson Discovery
 ########################################################################################################################
 locals {
+  account_id                     = var.existing_watson_discovery_instance_crn != null ? module.crn_parser[0].account_id : ibm_resource_instance.watson_discovery_instance[0].account_id
+  watson_discovery_id            = var.existing_watson_discovery_instance_crn != null ? data.ibm_resource_instance.existing_watson_discovery_instance[0].id : ibm_resource_instance.watson_discovery_instance[0].id
   watson_discovery_crn           = var.existing_watson_discovery_instance_crn != null ? data.ibm_resource_instance.existing_watson_discovery_instance[0].crn : ibm_resource_instance.watson_discovery_instance[0].crn
   watson_discovery_guid          = var.existing_watson_discovery_instance_crn != null ? data.ibm_resource_instance.existing_watson_discovery_instance[0].guid : ibm_resource_instance.watson_discovery_instance[0].guid
   watson_discovery_name          = var.existing_watson_discovery_instance_crn != null ? data.ibm_resource_instance.existing_watson_discovery_instance[0].resource_name : ibm_resource_instance.watson_discovery_instance[0].resource_name
   watson_discovery_plan_id       = var.existing_watson_discovery_instance_crn != null ? null : ibm_resource_instance.watson_discovery_instance[0].resource_plan_id
   watson_discovery_dashboard_url = var.existing_watson_discovery_instance_crn != null ? null : ibm_resource_instance.watson_discovery_instance[0].dashboard_url
+}
+
+module "crn_parser" {
+  count   = var.existing_watson_discovery_instance_crn != null ? 1 : 0
+  source  = "terraform-ibm-modules/common-utilities/ibm//modules/crn-parser"
+  version = "1.1.0"
+  crn     = var.existing_watson_discovery_instance_crn
 }
 
 data "ibm_resource_instance" "existing_watson_discovery_instance" {

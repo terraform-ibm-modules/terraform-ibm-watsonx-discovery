@@ -4,7 +4,7 @@ offerings:
   - name: deploy-arch-ibm-watson-discovery
     kind: solution
     catalog_id: 7df1e4ca-d54c-4fd0-82ce-3d13247308cd
-    offering_id: <to_be_added>
+    offering_id: 0f616276-a8a4-4399-bcbf-d3129f30295e
     variations:
       - name: standard
         mark_ready: true

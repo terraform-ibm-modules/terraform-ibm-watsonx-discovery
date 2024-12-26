@@ -44,14 +44,14 @@
             "authority": "scc-v3",
             "profiles": [
               {
-                "profile_name": "IBM Cloud Framework for Financial Services",
-                "profile_version": "1.6.0"
+                "profile_name": "IBM Cloud Framework for AI Security Guardrails 2.0",
+                "profile_version": "1.1.0"
               }
             ]},
           "iam_permissions": [
             {
               "role_crns": [
-                "crn:v1:bluemix:public:iam::::role:Administrator"
+                "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "all-account-management-services"
             },
@@ -130,7 +130,6 @@
               },
               {
                 "key": "plan",
-                "required": true,
                 "default_value": "plus",
                 "options": [
                   {
@@ -159,8 +158,7 @@
               },
               {
                 "key": "service_endpoints",
-                "required": true,
-                "default_value": "public",
+                "default_value": "private",
                 "options": [
                   {
                     "displayname": "Public Network",

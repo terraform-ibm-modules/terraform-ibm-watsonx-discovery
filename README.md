@@ -1,5 +1,5 @@
 <!-- Update this title with a descriptive name. Use sentence case. -->
-# Terraform IBM Watson Discovery
+# Terraform IBM Watsonx Discovery
 
 <!--
 Update status and "latest release" badges:

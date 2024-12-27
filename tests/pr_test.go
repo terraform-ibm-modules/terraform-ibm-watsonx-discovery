@@ -4,6 +4,7 @@ package test
 import (
 	"fmt"
 	"log"
+	"math/rand"
 	"os"
 	"strings"
 	"testing"
@@ -25,12 +26,21 @@ import (
 const resourceGroup = "geretain-test-resources"
 const basicExampleDir = "examples/basic"
 const existingExampleDir = "examples/existing-instance"
+const standardSolutionTerraformDir = "solutions/standard"
 
 // Define a struct with fields that match the structure of the YAML data
 const yamlLocation = "../common-dev-assets/common-go-assets/common-permanent-resources.yaml"
 
 var permanentResources map[string]interface{}
 var sharedInfoSvc *cloudinfo.CloudInfoService
+var validRegions = []string{
+	"au-syd",
+	"us-south",
+	"us-east",
+	"eu-de",
+	"eu-gb",
+	"jp-tok",
+}
 
 func TestMain(m *testing.M) {
 	sharedInfoSvc, _ = cloudinfo.NewCloudInfoServiceFromEnv("TF_VAR_ibmcloud_api_key", cloudinfo.CloudInfoServiceOptions{})
@@ -52,6 +62,7 @@ func setupOptions(t *testing.T, prefix string, exampleDir string) *testhelper.Te
 		ResourceGroup: resourceGroup,
 		TerraformVars: map[string]interface{}{
 			"access_tags": permanentResources["accessTags"],
+			"region":      validRegions[rand.Intn(len(validRegions))],
 		},
 	})
 	return options
@@ -101,6 +112,7 @@ func TestRunExistingResourcesExample(t *testing.T) {
 			"prefix":        prefix,
 			"resource_tags": tags,
 			"access_tags":   permanentResources["accessTags"],
+			"region":        validRegions[rand.Intn(len(validRegions))],
 		},
 		// Set Upgrade to true to ensure latest version of providers and modules are used by terratest.
 		// This is the same as setting the -upgrade=true flag with terraform.
@@ -143,5 +155,51 @@ func TestRunExistingResourcesExample(t *testing.T) {
 		terraform.Destroy(t, existingTerraformOptions)
 		terraform.WorkspaceDelete(t, existingTerraformOptions, prefix)
 		logger.Log(t, "END: Destroy (existing resources)")
+	}
+}
+
+func TestRunStandardSolution(t *testing.T) {
+	t.Parallel()
+
+	options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
+		Testing:       t,
+		TerraformDir:  standardSolutionTerraformDir,
+		Region:        validRegions[rand.Intn(len(validRegions))],
+		Prefix:        "discovery-st-da",
+		ResourceGroup: resourceGroup,
+	})
+
+	options.TerraformVars = map[string]interface{}{
+		"plan":                "plus",
+		"service_endpoints":   "public",
+		"resource_group_name": options.Prefix,
+	}
+
+	output, err := options.RunTestConsistency()
+	assert.Nil(t, err, "This should not have errored")
+	assert.NotNil(t, output, "Expected some output")
+}
+
+func TestRunStandardUpgradeSolution(t *testing.T) {
+	t.Parallel()
+
+	options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
+		Testing:       t,
+		TerraformDir:  standardSolutionTerraformDir,
+		Region:        validRegions[rand.Intn(len(validRegions))],
+		Prefix:        "discovery-st-da-upg",
+		ResourceGroup: resourceGroup,
+	})
+
+	options.TerraformVars = map[string]interface{}{
+		"plan":                "plus",
+		"service_endpoints":   "public",
+		"resource_group_name": options.Prefix,
+	}
+
+	output, err := options.RunTestUpgrade()
+	if !options.UpgradeTestSkipped {
+		assert.Nil(t, err, "This should not have errored")
+		assert.NotNil(t, output, "Expected some output")
 	}
 }

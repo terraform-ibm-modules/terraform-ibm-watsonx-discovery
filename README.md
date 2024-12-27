@@ -1,5 +1,5 @@
 <!-- Update this title with a descriptive name. Use sentence case. -->
-# Terraform IBM Watsonx Discovery
+# IBM Watson Discovery Module
 
 <!--
 Update status and "latest release" badges:
@@ -19,7 +19,7 @@ Expand on the repo short description in the .github/settings.yml file.
 For information, see "Module names and descriptions" at
 https://terraform-ibm-modules.github.io/documentation/#/implementation-guidelines?id=module-names-and-descriptions
 -->
-The IBM watsonx Discovery Terraform module is designed to automate the deployment and configuration of IBM Watson Discovery,which is an intelligent document processing engine that helps to gain insights from complex business documents.
+The IBM Watson Discovery terraform module is designed to automate the deployment and configuration of IBM Watson Discovery,which is an intelligent document processing engine that helps to gain insights from complex business documents.
 
 For further information on IBM Watson Discovery, including supported features, plans, and regions, please refer the official Watson Discovery [documentation](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-about)
 

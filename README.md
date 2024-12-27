@@ -1,5 +1,5 @@
 <!-- Update this title with a descriptive name. Use sentence case. -->
-# Terraform modules template project
+# Terraform IBM Watson Discovery
 
 <!--
 Update status and "latest release" badges:

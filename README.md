@@ -1,5 +1,5 @@
 <!-- Update this title with a descriptive name. Use sentence case. -->
-# IBM Watson Discovery Module
+# IBM Watson Discovery module
 
 <!--
 Update status and "latest release" badges:

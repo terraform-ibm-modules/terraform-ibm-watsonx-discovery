@@ -8,6 +8,17 @@ variable "ibmcloud_api_key" {
   sensitive   = true
 }
 
+variable "provider_visibility" {
+  description = "Set the visibility value for the IBM terraform provider. Supported values are `public`, `private`, `public-and-private`. [Learn more](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/guides/custom-service-endpoints)."
+  type        = string
+  default     = "private"
+
+  validation {
+    condition     = contains(["public", "private", "public-and-private"], var.provider_visibility)
+    error_message = "Invalid visibility option. Allowed values are 'public', 'private', or 'public-and-private'."
+  }
+}
+
 variable "use_existing_resource_group" {
   type        = bool
   description = "Whether to use an existing resource group."
@@ -39,8 +50,8 @@ variable "region" {
 
 variable "plan" {
   type        = string
-  description = "The plan that is required to provision the Watson Discovery instance. Possible values are: plus, enterprise, premium. [Learn more](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-pricing-plans)."
-  default     = "plus"
+  description = "The plan that is required to provision the Watson Discovery instance. Possible values are: plus, enterprise. [Learn more](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-pricing-plans)."
+  default     = "enterprise"
 }
 
 variable "resource_tags" {

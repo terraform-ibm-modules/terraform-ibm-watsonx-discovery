@@ -31,3 +31,13 @@ output "resource_group_name" {
   description = "The resource group name to provision the Watson Discovery instance."
   value       = module.resource_group.resource_group_name
 }
+
+output "plan_id" {
+  description = "Plan ID of the Watson Discovery instance."
+  value       = module.watson_discovery.plan_id
+}
+
+output "dashboard_url" {
+  description = "Dashboard URL of the Watson Discovery instance."
+  value       = module.watson_discovery.dashboard_url
+}

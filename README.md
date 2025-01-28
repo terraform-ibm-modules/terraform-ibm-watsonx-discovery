@@ -131,7 +131,7 @@ statement instead the previous block.
 |------|-------------|------|---------|:--------:|
 | <a name="input_access_tags"></a> [access\_tags](#input\_access\_tags) | A list of access tags to apply to the watson Discovery instance. For more information, see https://cloud.ibm.com/docs/account?topic=account-access-tags-tutorial. | `list(string)` | `[]` | no |
 | <a name="input_existing_watson_discovery_instance_crn"></a> [existing\_watson\_discovery\_instance\_crn](#input\_existing\_watson\_discovery\_instance\_crn) | The CRN of an existing watson Discovery instance. If not provided, a new instance will be provisioned. | `string` | `null` | no |
-| <a name="input_plan"></a> [plan](#input\_plan) | The plan that is required to provision the watson Discovery instance. Possible values are: plus, enterprise, premium. | `string` | `"plus"` | no |
+| <a name="input_plan"></a> [plan](#input\_plan) | The plan that is required to provision the watson Discovery instance. Possible values are: plus, enterprise. | `string` | `"plus"` | no |
 | <a name="input_region"></a> [region](#input\_region) | Region where watson Discovery instance will be provisioned. Required if creating a new instance. | `string` | `"us-south"` | no |
 | <a name="input_resource_group_id"></a> [resource\_group\_id](#input\_resource\_group\_id) | The resource group ID where the watson Discovery instance will be grouped. Required when creating a new instance. | `string` | `null` | no |
 | <a name="input_resource_tags"></a> [resource\_tags](#input\_resource\_tags) | Optional list of tags to describe the watson Discovery instance created by the module. | `list(string)` | `[]` | no |

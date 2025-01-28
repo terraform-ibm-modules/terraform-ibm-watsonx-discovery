@@ -165,7 +165,7 @@ func TestRunStandardSolution(t *testing.T) {
 		Testing:       t,
 		TerraformDir:  standardSolutionTerraformDir,
 		Region:        validRegions[rand.Intn(len(validRegions))],
-		Prefix:        "discovery-st-da",
+		Prefix:        "discovery-st",
 		ResourceGroup: resourceGroup,
 	})
 
@@ -173,6 +173,7 @@ func TestRunStandardSolution(t *testing.T) {
 		"plan":                "plus",
 		"service_endpoints":   "public",
 		"resource_group_name": options.Prefix,
+		"provider_visibility": "public",
 	}
 
 	output, err := options.RunTestConsistency()
@@ -187,7 +188,7 @@ func TestRunStandardUpgradeSolution(t *testing.T) {
 		Testing:       t,
 		TerraformDir:  standardSolutionTerraformDir,
 		Region:        validRegions[rand.Intn(len(validRegions))],
-		Prefix:        "discovery-st-da-upg",
+		Prefix:        "discovery-st-upg",
 		ResourceGroup: resourceGroup,
 	})
 
@@ -195,6 +196,7 @@ func TestRunStandardUpgradeSolution(t *testing.T) {
 		"plan":                "plus",
 		"service_endpoints":   "public",
 		"resource_group_name": options.Prefix,
+		"provider_visibility": "public",
 	}
 
 	output, err := options.RunTestUpgrade()

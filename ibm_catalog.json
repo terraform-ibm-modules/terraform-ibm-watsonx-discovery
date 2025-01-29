@@ -2,7 +2,7 @@
   "products": [
     {
       "name": "deploy-arch-ibm-watson-discovery",
-      "label": "Watson Discovery",
+      "label": "Cloud automation for Watson Discovery",
       "product_kind": "solution",
       "tags": [
         "ibm_created",
@@ -83,7 +83,26 @@
           },
           "configuration": [
               {
-                "key": "ibmcloud_api_key"
+                "key": "ibmcloud_api_key",
+                "required": true,
+                "type": "password"
+              },
+              {
+                "key": "provider_visibility",
+                "options": [
+                  {
+                    "displayname": "private",
+                    "value": "private"
+                  },
+                  {
+                    "displayname": "public",
+                    "value": "public"
+                  },
+                  {
+                    "displayname": "public-and-private",
+                    "value": "public-and-private"
+                  }
+                ]
               },
               {
                 "key": "use_existing_resource_group"
@@ -92,7 +111,9 @@
                 "key": "resource_group_name"
               },
               {
-                "key": "prefix"
+                "key": "prefix",
+                "required": true,
+                "description": "Prefix to add to all resources created by this solution. To not use any prefix value, you can enter the string `__NULL__`."
               },
               {
                 "key": "name"
@@ -137,16 +158,8 @@
                     "value": "plus"
                   },
                   {
-                    "displayname": "Premium",
-                    "value": "premium"
-                  },
-                  {
                     "displayname": "Enterprise",
                     "value": "enterprise"
-                  },
-                  {
-                    "displayname": "Enterprise with data isolation",
-                    "value": "enterprisedataisolation"
                   }
                 ]
               },
@@ -158,7 +171,7 @@
               },
               {
                 "key": "service_endpoints",
-                "default_value": "private",
+                "default_value": "public-and-private",
                 "options": [
                   {
                     "displayname": "Public Network",

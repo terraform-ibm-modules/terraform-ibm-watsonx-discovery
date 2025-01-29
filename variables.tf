@@ -66,7 +66,7 @@ variable "watson_discovery_name" {
 }
 
 variable "plan" {
-  description = "The plan that is required to provision the watson Discovery instance. Possible values are: plus, enterprise, premium."
+  description = "The plan that is required to provision the watson Discovery instance. Possible values are: plus, enterprise."
   type        = string
   default     = "plus"
 
@@ -77,10 +77,9 @@ variable "plan" {
   validation {
     condition = anytrue([
       var.plan == "plus",
-      var.plan == "enterprise",
-      var.plan == "premium",
+      var.plan == "enterprise"
     ]) || var.existing_watson_discovery_instance_crn != null
-    error_message = "A new watson Discovery instance requires a 'plus', 'enterprise', or 'premium' plan. [Learn more](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-pricing-plans)."
+    error_message = "A new watson Discovery instance requires a 'plus' or 'enterprise' plan. [Learn more](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-pricing-plans)."
   }
 }
 

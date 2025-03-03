@@ -69,5 +69,5 @@ variable "access_tags" {
 variable "service_endpoints" {
   description = "Types of the service endpoints that can be applied to a Watson Discovery instance. Possible values are : public, private or public-and-private."
   type        = string
-  default     = "public-and-private"
+  default     = "private"
 }

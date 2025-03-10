@@ -23,9 +23,9 @@ module "resource_group" {
 module "watson_discovery" {
   source                = "../../"
   region                = var.region
-  plan                  = var.plan
+  plan                  = var.watsonx_discovery_plan
   resource_group_id     = module.resource_group.resource_group_id
-  watson_discovery_name = try("${local.prefix}-${var.name}", var.name)
+  watson_discovery_name = try("${local.prefix}-${var.watsonx_discovery_instance_name}", var.watsonx_discovery_instance_name)
   service_endpoints     = var.service_endpoints
   access_tags           = var.access_tags
   resource_tags         = var.resource_tags

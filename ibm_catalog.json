@@ -152,7 +152,7 @@
               ]
             },
             {
-              "key": "watsonx_discovery_instance_name"
+              "key": "watson_discovery_instance_name"
             },
             {
               "key": "service_plan",

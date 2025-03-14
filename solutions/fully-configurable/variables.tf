@@ -30,7 +30,7 @@ variable "prefix" {
   description = "The prefix to add to all resources that this solution creates (e.g `prod`, `test`, `dev`). To not use any prefix value, you can set this value to `null` or an empty string.`"
 }
 
-variable "watsonx_discovery_instance_name" {
+variable "watson_discovery_instance_name" {
   type        = string
   description = "The name of the Watson Discovery instance. If a prefix input variable is specified, the prefix is added to the name in the `<prefix>-<name>` format."
   default     = "discovery"

@@ -25,7 +25,7 @@ module "watson_discovery" {
   region                = var.region
   plan                  = var.service_plan
   resource_group_id     = module.resource_group.resource_group_id
-  watson_discovery_name = var.watsonx_discovery_instance_name != null ? "${local.prefix}${var.watsonx_discovery_instance_name}" : null
+  watson_discovery_name = var.watson_discovery_instance_name != null ? "${local.prefix}${var.watson_discovery_instance_name}" : null
   service_endpoints     = var.service_endpoints
   access_tags           = var.access_tags
   resource_tags         = var.resource_tags

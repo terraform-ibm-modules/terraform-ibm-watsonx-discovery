@@ -21,16 +21,16 @@ variable "provider_visibility" {
 
 variable "existing_resource_group_name" {
   type        = string
-  description = "The name of an existing resource group to provision the Watsonx.discovery in."
+  description = "The name of an existing resource group to provision the Watson.discovery in."
 }
 
 variable "prefix" {
   type        = string
   nullable    = true
-  description = "The prefix to add to all resources that this solution creates (e.g `prod`, `test`, `dev`). To not use any prefix value, you can set this value to `null` or an empty string."
+  description = "The prefix to add to all resources that this solution creates (e.g `prod`, `test`, `dev`). To not use any prefix value, you can set this value to `null` or an empty string.`"
 }
 
-variable "name" {
+variable "watson_discovery_instance_name" {
   type        = string
   description = "The name of the Watson Discovery instance. If a prefix input variable is specified, the prefix is added to the name in the `<prefix>-<name>` format."
   default     = "discovery"
@@ -42,7 +42,7 @@ variable "region" {
   default     = "us-south"
 }
 
-variable "plan" {
+variable "service_plan" {
   type        = string
   description = "The plan that is required to provision the Watson Discovery instance. Possible values are: plus, enterprise. [Learn more](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-pricing-plans)."
   default     = "enterprise"

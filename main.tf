@@ -15,7 +15,6 @@ locals {
   watson_discovery_dashboard_url = var.existing_watson_discovery_instance_crn != null ? null : "https://cloud.ibm.com/services/discovery/${urlencode(local.raw_crn)}"
 }
 
-# Workaround solution to retrieve the Dashboard URL
 module "crn_parser" {
   count   = var.existing_watson_discovery_instance_crn != null ? 1 : 0
   source  = "terraform-ibm-modules/common-utilities/ibm//modules/crn-parser"

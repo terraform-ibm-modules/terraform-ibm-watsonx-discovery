@@ -12,7 +12,7 @@ locals {
 
   # Below is the temporary workaround to get the dashboard_url and should be removed later. Refer [Issue-12944](https://github.ibm.com/GoldenEye/issues/issues/12944)
   raw_crn                        = "crn:v1:bluemix:public:discovery:${var.region}:a/${local.account_id}:${local.watson_discovery_guid}::"
-  watson_discovery_dashboard_url = var.existing_watson_discovery_instance_crn != null ? null : "https://cloud.ibm.com/services/discovery/${urlencode(local.raw_crn)}"
+  watson_discovery_dashboard_url = "https://cloud.ibm.com/services/discovery/${urlencode(local.raw_crn)}"
 }
 
 module "crn_parser" {

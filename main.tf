@@ -5,14 +5,12 @@
 locals {
   account_id               = var.existing_watson_discovery_instance_crn != null ? module.crn_parser[0].account_id : ibm_resource_instance.watson_discovery_instance[0].account_id
   watson_discovery_id      = var.existing_watson_discovery_instance_crn != null ? data.ibm_resource_instance.existing_watson_discovery_instance[0].id : ibm_resource_instance.watson_discovery_instance[0].id
-  watson_discovery_crn     = var.existing_watson_discovery_instance_crn != null ? data.ibm_resource_instance.existing_watson_discovery_instance[0].crn : ibm_resource_instance.watson_discovery_instance[0].crn
+  watson_discovery_crn     = var.existing_watson_discovery_instance_crn != null ? var.existing_watson_discovery_instance_crn : ibm_resource_instance.watson_discovery_instance[0].crn
   watson_discovery_guid    = var.existing_watson_discovery_instance_crn != null ? data.ibm_resource_instance.existing_watson_discovery_instance[0].guid : ibm_resource_instance.watson_discovery_instance[0].guid
   watson_discovery_name    = var.existing_watson_discovery_instance_crn != null ? data.ibm_resource_instance.existing_watson_discovery_instance[0].resource_name : ibm_resource_instance.watson_discovery_instance[0].resource_name
   watson_discovery_plan_id = var.existing_watson_discovery_instance_crn != null ? null : ibm_resource_instance.watson_discovery_instance[0].resource_plan_id
-
   # Below is the temporary workaround to get the dashboard_url and should be removed later. Refer [Issue-12944](https://github.ibm.com/GoldenEye/issues/issues/12944)
-  raw_crn                        = "crn:v1:bluemix:public:discovery:${var.region}:a/${local.account_id}:${local.watson_discovery_guid}::"
-  watson_discovery_dashboard_url = "https://cloud.ibm.com/services/discovery/${urlencode(local.raw_crn)}"
+  watson_discovery_dashboard_url = "https://cloud.ibm.com/services/discovery/${urlencode(local.watson_discovery_crn)}"
 }
 
 module "crn_parser" {

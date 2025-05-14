@@ -19,7 +19,7 @@ variable "provider_visibility" {
   }
 }
 
-variable "resource_group_name" {
+variable "existing_resource_group_name" {
   type        = string
   description = "The name of an existing resource group to provision the Watson.discovery in."
   default     = "Default"

@@ -3,5 +3,5 @@
   "region": "us-south",
   "resource_tags": $TAGS,
   "watson_discovery_instance_name": $PREFIX,
-  "existing_resource_group_name": "geretain-test-resources"
+  "resource_group_name": "geretain-test-resources"
 }

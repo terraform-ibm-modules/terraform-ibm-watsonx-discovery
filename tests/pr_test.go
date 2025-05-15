@@ -181,7 +181,7 @@ func TestRunStandardUpgradeSolution(t *testing.T) {
 		Testing:       t,
 		TerraformDir:  standardSolutionTerraformDir,
 		Region:        validRegions[rand.Intn(len(validRegions))],
-		Prefix:        "wxdi-da-upg",
+		Prefix:        "wdi-da-ug",
 		ResourceGroup: resourceGroup,
 	})
 

@@ -55,7 +55,7 @@
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "all-account-management-services",
-              "notes": "Required if you are creating foundational IBM Cloud account components such as IAM settings, trusted profiles, access groups, and resource groups."
+              "notes": "[optional] Required if you are creating foundational IBM Cloud account components such as IAM settings, trusted profiles, access groups, and resource groups."
             },
             {
               "role_crns": [
@@ -124,7 +124,9 @@
             },
             {
               "key": "existing_resource_group_name",
-              "required": true,
+              "display_name": "resource_group",
+              "required": false,
+              "default_value": "Default",
               "custom_config": {
                 "type": "resource_group",
                 "grouping": "deployment",
@@ -149,7 +151,8 @@
                   "displayname": "public-and-private",
                   "value": "public-and-private"
                 }
-              ]
+              ],
+              "hidden": true
             },
             {
               "key": "watson_discovery_instance_name"
@@ -210,7 +213,7 @@
           "dependencies": [
             {
               "name": "deploy-arch-ibm-account-infra-base",
-              "description": "This module prepares your IBM Cloud account with the necessary configurations to ensure a secure and organized environment for your architecture.",
+              "description": "This architecture supports creating and configuring the foundational components of an IBM Cloud account.",
               "catalog_id": "7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3",
               "flavors": [
                 "resource-group-only",
@@ -222,11 +225,11 @@
               ],
               "input_mapping": [
                 {
-                  "dependency_output": "global_resource_group_name",
+                  "dependency_output": "single_resource_group_name",
                   "version_input": "existing_resource_group_name"
                 },
                 {
-                  "dependency_input": "global_resource_group_name",
+                  "dependency_input": "single_resource_group_name",
                   "value": "workload-rg"
                 },
                 {
@@ -246,7 +249,7 @@
             },
             {
               "name": "testing-deploy-arch-ibm-observability",
-              "description": "This module supports configurung resources with logging, monitoring and activity tracking.",
+              "description": "Cloud Automation for Observability supports configuring IBM Cloud Observability resources for logging, monitoring, and activity tracking.",
               "id": "daf2cf91-2384-4205-b7f4-621299a4896d-global",
               "version": "v1.5.0",
               "flavors": [
@@ -272,7 +275,8 @@
               ]
             }
           ],
-          "dependency_version_2": true
+          "dependency_version_2": true,
+          "terraform_version": "1.10.5"
         }
       ]
     }

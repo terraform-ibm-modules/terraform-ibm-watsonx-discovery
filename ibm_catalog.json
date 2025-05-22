@@ -54,7 +54,7 @@
               "role_crns": [
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
-              "service_name": "all-account-management-services",
+              "service_name": "All Account Management services",
               "notes": "[optional] Required if you are creating foundational IBM Cloud account components such as IAM settings, trusted profiles, access groups, and resource groups."
             },
             {
@@ -125,8 +125,6 @@
             {
               "key": "existing_resource_group_name",
               "display_name": "resource_group",
-              "required": false,
-              "default_value": "Default",
               "custom_config": {
                 "type": "resource_group",
                 "grouping": "deployment",
@@ -213,7 +211,7 @@
           "dependencies": [
             {
               "name": "deploy-arch-ibm-account-infra-base",
-              "description": "This architecture supports creating and configuring the foundational components of an IBM Cloud account.",
+              "description": "Cloud automation for Account Configuration organizes your IBM Cloud account with a ready-made set of resource groups by default—and, when you enable the \"with Account Settings\" option, it also applies baseline security and governance settings.",
               "catalog_id": "7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3",
               "flavors": [
                 "resource-group-only",
@@ -245,13 +243,13 @@
               ],
               "optional": true,
               "on_by_default": true,
-              "version": "v2.2.3"
+              "version": "v3.0.7"
             },
             {
               "name": "testing-deploy-arch-ibm-observability",
               "description": "Cloud Automation for Observability supports configuring IBM Cloud Observability resources for logging, monitoring, and activity tracking.",
               "id": "daf2cf91-2384-4205-b7f4-621299a4896d-global",
-              "version": "v1.5.0",
+              "version": "v3.0.3",
               "flavors": [
                 "standard"
               ],

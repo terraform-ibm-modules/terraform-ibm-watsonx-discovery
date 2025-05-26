@@ -24,7 +24,7 @@
         "ai"
       ],
       "short_description": "Creates and configures an instance of IBM Watson Discovery.",
-      "long_description": "IBM Watson Discovery is an intelligent document processing engine designed to extract valuable insights from complex business documents. With Discovery, you can visually train AI models to deeply understand your content — including text, tables, and images — uncovering business value that may be hidden within your enterprise data.For more details on watson discovery, [refer here](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-about).",
+      "long_description": "IBM Watson Discovery is an intelligent document processing engine designed to extract valuable insights from complex business documents. With Discovery, you can visually train AI models to deeply understand your content — including text, tables, and images — uncovering business value that may be hidden within your enterprise data. For more details on watson discovery, [refer here](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-about).",
       "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/blob/main/README.md",
       "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/main/images/watson-discovery.svg",
       "provider_name": "IBM",

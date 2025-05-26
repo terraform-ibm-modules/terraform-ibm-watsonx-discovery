@@ -24,14 +24,14 @@
         "ai"
       ],
       "short_description": "Creates and configures an instance of IBM Watson Discovery.",
-      "long_description": "IBM® Watson Discovery is an intelligent document processing engine designed to extract valuable insights from complex business documents. With Discovery, you can visually train AI models to deeply understand your content — including text, tables, and images — uncovering business value that may be hidden within your enterprise data.For more details on watsonx discovery, [refer here](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-about).",
+      "long_description": "IBM Watson Discovery is an intelligent document processing engine designed to extract valuable insights from complex business documents. With Discovery, you can visually train AI models to deeply understand your content — including text, tables, and images — uncovering business value that may be hidden within your enterprise data.For more details on watson discovery, [refer here](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-about).",
       "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/blob/main/README.md",
       "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/main/images/watson-discovery.svg",
       "provider_name": "IBM",
       "features": [
         {
           "title": "Watson Discovery",
-          "description": "For more details on Watsonx Discovery instances, [refer here](https://cloud.ibm.com/catalog/services/watson-discovery#about)"
+          "description": "For more details on Watson Discovery instances, [refer here](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-about)"
         }
       ],
       "support_details": "This product is in the community registry, as such support is handled through the originated repo. If you experience issues please open an issue in that repository [here](https://github.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/issues). Please note this product is not supported via the IBM Cloud Support Center.",
@@ -76,11 +76,11 @@
             "diagrams": [
               {
                 "diagram": {
-                  "caption": "IBM Watsonx Discovery architecture",
+                  "caption": "IBM Watson Discovery architecture",
                   "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/main/reference-architecture/deployable-architecture-watson-discovery.svg",
                   "type": "image/svg+xml"
                 },
-                "description": "**Watsonx Discovery** <br/> <br/><b>Description</b> <br/> Creating and configuring watsonx discovery instance on IBM Cloud. Optional services used are:<br/> - Account Configuration <br/> - Observability. <br/><br/> **Account Configuration**: <br/> This architecture supports creating and configuring the foundational components of an IBM Cloud account. This includes IAM account settings, a trusted profile and associated access groups, and the resource groups in which all resources are provisioned.<br/> <br/> **Observability**: <br/> This architecture supports configuring IBM Cloud Observability resources for logging, monitoring, and activity tracking.<br/>"
+                "description": "This solution provisions an IBM Watson Discovery instance on IBM Cloud. Once the instance is successfully created, you will receive access to the Discovery dashboard, where you can begin connecting data sources and building AI-powered search projects. Optionally, you can integrate IBM Cloud Observability tools—such as logging, monitoring, and activity tracking event routing — to gain deeper operational insights and manage your Discovery workflows effectively."
               }
             ]
           },
@@ -126,6 +126,7 @@
             {
               "key": "existing_resource_group_name",
               "display_name": "resource_group",
+              "default_value":"Default",
               "custom_config": {
                 "type": "resource_group",
                 "grouping": "deployment",
@@ -154,7 +155,8 @@
               "hidden": true
             },
             {
-              "key": "watson_discovery_instance_name"
+              "key": "watson_discovery_instance_name",
+              "required": true
             },
             {
               "key": "service_plan",
@@ -220,9 +222,6 @@
               ],
               "default_flavor": "resource-group-only",
               "id": "63641cec-6093-4b4f-b7b0-98d2f4185cd6-global",
-              "ignore_auto_referencing": [
-                "*"
-              ],
               "input_mapping": [
                 {
                   "dependency_output": "workload_resource_group_name",
@@ -244,9 +243,9 @@
               "version": "v3.0.7"
             },
             {
-              "name": "testing-deploy-arch-ibm-observability",
-              "description": "Cloud Automation for Observability supports configuring IBM Cloud Observability resources for logging, monitoring, and activity tracking.",
-              "id": "daf2cf91-2384-4205-b7f4-621299a4896d-global",
+              "name": "deploy-arch-ibm-observability",
+              "description": "Cloud Automation for Observability supports configuring IBM Cloud Observability resources for logging, monitoring, and activity tracker event routing.",
+              "id": "a3137d28-79e0-479d-8a24-758ebd5a0eab-global",
               "version": "v3.0.3",
               "flavors": [
                 "instances"
@@ -254,9 +253,6 @@
               "catalog_id": "7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3",
               "optional": true,
               "on_by_default": true,
-              "ignore_auto_referencing": [
-                "*"
-              ],
               "input_mapping": [
                 {
                   "dependency_input": "prefix",

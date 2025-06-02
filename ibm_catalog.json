@@ -107,7 +107,7 @@
                   "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/main/reference-architecture/deployable-architecture-watson-discovery.svg",
                   "type": "image/svg+xml"
                 },
-                "description": "This solution provisions an IBM Watson Discovery instance on IBM Cloud. Once the instance is successfully created, you will receive access to the Discovery dashboard, where you can begin connecting data sources and building AI-powered search projects. Optionally, you can integrate IBM Cloud Observability services—such as logging, monitoring, and activity tracking event routing — to gain deeper operational insights and manage your Discovery workflows effectively."
+                "description": "This solution provisions an IBM Watson Discovery instance on IBM Cloud. Once the instance is successfully created, you will receive access to the Discovery dashboard, where you can begin connecting data sources and building AI-powered search projects. <br><br>Optionally, you can integrate IBM Cloud Observability services — such as logging, monitoring, and activity tracking event routing using the Cloud automation for Observability deployable architecture — to gain deeper operational insights and manage your Discovery workflows effectively."
               }
             ]
           },

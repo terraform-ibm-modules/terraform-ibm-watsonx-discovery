@@ -96,8 +96,8 @@
           "architecture": {
             "features": [
               {
-                "title": "Creates an instance of Watson Discovery",
-                "description": "This architecture creates an instance of IBM Watson Discovery. It accepts or creates a resource group."
+                "title": "Watson Discovery instance",
+                "description": "Creates and configures an instance of IBM Watson Discovery."
               }
             ],
             "diagrams": [

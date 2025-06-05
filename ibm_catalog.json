@@ -2,7 +2,7 @@
   "products": [
     {
       "name": "deploy-arch-ibm-watson-discovery",
-      "label": "[Add-ons Beta] Cloud automation for Watson Discovery",
+      "label": "Cloud automation for Watson Discovery",
       "product_kind": "solution",
       "tags": [
         "ibm_created",
@@ -24,16 +24,21 @@
         "ai"
       ],
       "short_description": "Creates and configures an instance of IBM Watson Discovery.",
-      "long_description": "This architecture supports creating and configuring an instance of Watson Discovery.",
+      "long_description": "IBM Watson Discovery is an intelligent document processing engine designed to extract valuable insights from complex business documents. With Discovery, you can visually train AI models to deeply understand your content — including text, tables, and images — uncovering business value that may be hidden within your enterprise data. This deployable architecture creates and configures an instance of IBM Watson Discovery. For more details on Watson Discovery, [refer here](https://www.ibm.com/products/watson-discovery).",
       "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/blob/main/README.md",
       "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/main/images/watson-discovery.svg",
       "provider_name": "IBM",
       "features": [
         {
-          "title": "Creates an instance of IBM Watson Discovery",
-          "description": "Creates and configures an IBM Watson Discovery instance."
+          "title": "Watson Discovery instance",
+          "description": "Creates the Watson Discovery Instance. [Learn more](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-about)"
+        },
+        {
+          "title": "Optional Integrations",
+          "description": "This solution can be integrated with [Cloud automation for Observability](https://cloud.ibm.com/catalog/7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3/architecture/deploy-arch-ibm-observability-a3137d28-79e0-479d-8a24-758ebd5a0eab-global) that supports configuring resources for logging, monitoring and activity tracker event routing"
         }
       ],
+      "support_details": "This product is in the community registry, as such support is handled through the originated repo. If you experience issues please open an issue in the repository [here](https://github.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/issues). Please note this product is not supported via the IBM Cloud Support Center.",
       "flavors": [
         {
           "label": "Fully configurable",
@@ -54,20 +59,45 @@
               "role_crns": [
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
-              "service_name": "all-account-management-services"
+              "service_name": "All Account Management services",
+              "notes": "[Optional] Required if you are creating foundational IBM Cloud account components such as IAM settings, trusted profiles, access groups, and resource groups."
             },
             {
               "role_crns": [
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
-              "service_name": "discovery"
+              "service_name": "discovery",
+              "notes": "Required if you are creating a new instance of Watson Discovery."
+            },
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+                "crn:v1:bluemix:public:iam::::role:Editor"
+              ],
+              "service_name": "sysdig-monitor",
+              "notes": "[Optional] Required if you are consuming the Observability deployable architecture which sets up Cloud Monitoring."
+            },
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+                "crn:v1:bluemix:public:iam::::role:Editor"
+              ],
+              "service_name": "logs",
+              "notes": "[Optional] Required if you are consuming the Observability deployable architecture which sets up Cloud Logs."
+            },
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::role:Administrator"
+              ],
+              "service_name": "iam-identity",
+              "notes": "[Optional] Required if Cloud automation for account configuration is enabled."
             }
           ],
           "architecture": {
             "features": [
               {
-                "title": " Creates an instance of Watson Discovery",
-                "description": "This architecture creates an instance of IBM Watson Discovery. It accepts or creates a resource group."
+                "title": "Watson Discovery instance",
+                "description": "Creates and configures an instance of IBM Watson Discovery."
               }
             ],
             "diagrams": [
@@ -77,7 +107,7 @@
                   "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/main/reference-architecture/deployable-architecture-watson-discovery.svg",
                   "type": "image/svg+xml"
                 },
-                "description": "This architecture supports creating and configuring an instance of Watson Discovery."
+                "description": "This solution provisions an IBM Watson Discovery instance on IBM Cloud. Once the instance is successfully created, you will receive access to the Discovery dashboard, where you can begin connecting data sources and building AI - powered search projects. <br><br>Optionally, you can integrate IBM Cloud Observability services — such as logging, monitoring, and activity tracking event routing using the Cloud automation for Observability deployable architecture — to gain deeper operational insights and manage your Discovery workflows effectively."
               }
             ]
           },
@@ -122,7 +152,7 @@
             },
             {
               "key": "existing_resource_group_name",
-              "required": true,
+              "display_name": "resource_group",
               "custom_config": {
                 "type": "resource_group",
                 "grouping": "deployment",
@@ -147,7 +177,8 @@
                   "displayname": "public-and-private",
                   "value": "public-and-private"
                 }
-              ]
+              ],
+              "hidden": true
             },
             {
               "key": "watson_discovery_instance_name"
@@ -208,27 +239,18 @@
           "dependencies": [
             {
               "name": "deploy-arch-ibm-account-infra-base",
+              "description": "Cloud automation for Account Configuration organizes your IBM Cloud account with a ready-made set of resource groups by default—and, when you enable the \"with Account Settings\" option, it also applies baseline security and governance settings.",
               "catalog_id": "7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3",
               "flavors": [
-                "resource-group-only"
+                "resource-group-only",
+                "resource-groups-with-account-settings"
               ],
+              "default_flavor": "resource-group-only",
               "id": "63641cec-6093-4b4f-b7b0-98d2f4185cd6-global",
-              "ignore_auto_referencing": [
-                "*"
-              ],
               "input_mapping": [
                 {
-                  "dependency_output": "global_resource_group_name",
+                  "dependency_output": "workload_resource_group_name",
                   "version_input": "existing_resource_group_name"
-                },
-                {
-                  "dependency_input": "global_resource_group_name",
-                  "value": "workload-rg"
-                },
-                {
-                  "dependency_input": "provider_visibility",
-                  "version_input": "provider_visibility",
-                  "reference_version": true
                 },
                 {
                   "dependency_input": "prefix",
@@ -237,22 +259,20 @@
                 }
               ],
               "optional": true,
-              "on_by_default": true,
-              "version": "^v2.0.6"
+              "on_by_default": false,
+              "version": "v3.0.7"
             },
             {
-              "name": "testing-deploy-arch-ibm-observability",
-              "id": "daf2cf91-2384-4205-b7f4-621299a4896d-global",
-              "version": "^1.3.0",
+              "name": "deploy-arch-ibm-observability",
+              "description": "Configure IBM Cloud Logs, Cloud Monitoring, and Activity Tracker event routing for analysing logs and metrics generated by the Watson Discovery instance.",
+              "id": "a3137d28-79e0-479d-8a24-758ebd5a0eab-global",
+              "version": "v3.0.3",
               "flavors": [
-                "standard"
+                "instances"
               ],
               "catalog_id": "7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3",
               "optional": true,
               "on_by_default": true,
-              "ignore_auto_referencing": [
-                "*"
-              ],
               "input_mapping": [
                 {
                   "dependency_input": "prefix",
@@ -267,7 +287,8 @@
               ]
             }
           ],
-          "dependency_version_2": true
+          "dependency_version_2": true,
+          "terraform_version": "1.10.5"
         }
       ]
     }

@@ -58,7 +58,7 @@ variable "region" {
 variable "service_plan" {
   type        = string
   description = "The plan that is required to provision the Watson Discovery instance. Possible values are: plus, enterprise. [Learn more](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-pricing-plans)."
-  default     = "enterprise"
+  default     = "plus"
 }
 
 variable "resource_tags" {

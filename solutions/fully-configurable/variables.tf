@@ -63,7 +63,7 @@ variable "region" {
 
 variable "service_plan" {
   type        = string
-  description = "The plan that is required to provision the Watson Discovery instance. Possible values are: plus, enterprise. [Learn more](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-pricing-plans)."
+  description = "The plan that is required to provision the Watson Discovery instance. [Learn more](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-pricing-plans)."
   default     = "plus"
 }
 
@@ -80,7 +80,7 @@ variable "access_tags" {
 }
 
 variable "service_endpoints" {
-  description = "Types of the service endpoints that can be applied to a Watson Discovery instance. Possible values are : public, private or public-and-private."
+  description = "Types of the service endpoints that can be applied to a Watson Discovery instance."
   type        = string
   default     = "public-and-private"
 }

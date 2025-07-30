@@ -35,8 +35,8 @@
           "description": "Provision and configure an instance of IBM Watson Discovery. Explore more about IBM Watson Discovery [here](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-about)"
         },
         {
-          "title": "Optional Integrations",
-          "description": "This solution can be integrated with [Cloud automation for Observability](https://cloud.ibm.com/catalog/7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3/architecture/deploy-arch-ibm-observability-a3137d28-79e0-479d-8a24-758ebd5a0eab-global) that supports configuring resources for logging, monitoring and activity tracker event routing"
+          "title": "Optional observability tools",
+          "description": "Use Watson Discovery with [Cloud automation for Observability](https://cloud.ibm.com/catalog/7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3/architecture/deploy-arch-ibm-observability-a3137d28-79e0-479d-8a24-758ebd5a0eab-global), which provides monitoring and logging capabilities to deliver deep operational insights into your Watson Discovery deployment."
         }
       ],
       "support_details": "This product is in the community registry, as such support is handled through the originated repo. If you experience issues, please open an issue in the repository [here](https://github.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/issues). Please note this product is not supported via the IBM Cloud Support Center.",

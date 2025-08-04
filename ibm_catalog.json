@@ -91,7 +91,7 @@
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "kms",
-              "notes": "[Optional] Required if you are deploying Cloud automation for Key Protect."
+              "notes": "[Optional] Required for enabling Cloud automation of Key Protect in the Observability deployable architecture."
             },
             {
               "role_crns": [
@@ -100,6 +100,14 @@
               ],
               "service_name": "hs-crypto",
               "notes": "[Optional] Required for enabling Hyper Protect Crypto Services in the Observability deployable architecture used for Event Routing and Cloud Logs."
+            },
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::serviceRole:Writer",
+                "crn:v1:bluemix:public:iam::::role:Editor"
+              ],
+              "service_name": "atracker",
+              "notes": "[Optional] Required for configuring Activity Tracker event routing to Object Storage bucket and enabling Cloud Logs through the Observability deployable architecture."
             },
             {
               "role_crns": [

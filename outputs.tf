@@ -3,12 +3,12 @@
 ########################################################################################################################
 
 output "account_id" {
-  description = "Account ID of the watson Discovery instance."
+  description = "Account ID of the Watson Discovery instance."
   value       = local.account_id
 }
 
 output "id" {
-  description = "ID of the watson Discovery instance."
+  description = "ID of the Watson Discovery instance."
   value       = local.watson_discovery_id
 }
 

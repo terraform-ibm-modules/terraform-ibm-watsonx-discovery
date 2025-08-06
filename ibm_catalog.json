@@ -273,6 +273,7 @@
             {
               "key": "resource_tags",
               "custom_config": {
+                "type": "array",
                 "grouping": "deployment",
                 "original_grouping": "deployment",
                 "config_constraints": {

@@ -24,8 +24,8 @@
         "solution",
         "ai"
       ],
-      "short_description": "Creates and configures an instance of IBM Watson Discovery.",
-      "long_description": "[IBM Watson Discovery](https://www.ibm.com/products/watson-discovery) is an intelligent document processing engine designed to extract valuable insights from complex business documents. With Discovery, you can visually train AI models to deeply understand your content — including text, tables, and images — uncovering business value that may be hidden within your enterprise data. In addition to Watson Discovery, this deployable architecture includes optional tools for key encryption, observability, and account resources to help you manage your watsonx Orchestrate deployment.",
+      "short_description": "Creates and configures an instance of IBM Watson Discovery",
+      "long_description": "[IBM Watson Discovery](https://www.ibm.com/products/watson-discovery) is an intelligent document processing engine designed to extract valuable insights from complex business documents. With Discovery, you can visually train AI models to deeply understand your content — including text, tables, and images — uncovering business value that may be hidden within your enterprise data. In addition to Watson Discovery, this deployable architecture includes optional tools for key encryption, observability, and account resources to help you manage your Watson Discovery deployment.",
       "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/blob/main/README.md",
       "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/main/images/watson-discovery.svg",
       "provider_name": "IBM",
@@ -62,7 +62,7 @@
                 "crn:v1:bluemix:public:iam::::role:Viewer"
               ],
               "service_name": "Resource group only",
-              "notes": "Required to create an instance of Watson Discovery."
+              "notes": "Viewer access is required in the resource group you want to provision in."
             },
             {
               "role_crns": [
@@ -76,7 +76,7 @@
                 "crn:v1:bluemix:public:iam::::role:Administrator"
               ],
               "service_name": "All Identity and Access enabled services",
-              "notes": "[Optional] Required to deploy Cloud automation for account configuration, which creates foundational IBM Cloud account resources, like IAM settings, trusted profiles, access groups, and resource groups."
+              "notes": "[Optional] Required to deploy Cloud automation for account configuration, which creates foundational IBM Cloud account resources, like IAM settings, trusted profiles, access groups, and resource group with account settings."
             },
             {
               "role_crns": [
@@ -138,7 +138,7 @@
             "features": [
               {
                 "title": " ",
-                "description": "Configured to use IBM secure-by-default standards, but you can edit it to fit your use case."
+                "description": "Configured to use IBM secure-by-default standards, but can be edited to fit your use case."
               }
             ],
             "diagrams": [

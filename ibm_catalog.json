@@ -25,14 +25,14 @@
         "ai"
       ],
       "short_description": "Creates and configures an instance of IBM Watson Discovery",
-      "long_description": "IBM Watson Discovery is an intelligent document processing engine designed to extract valuable insights from complex business documents. With Discovery, you can visually train AI models to deeply understand your content — including text, tables, and images — uncovering business value that may be hidden within your enterprise data. This deployable architecture creates and configures an instance of IBM Watson Discovery. For more details on Watson Discovery, [refer here](https://www.ibm.com/products/watson-discovery).",
+      "long_description": "[IBM Watson Discovery](https://www.ibm.com/products/watson-discovery) is an intelligent document processing engine designed to extract valuable insights from complex business documents. With Discovery, you can visually train AI models to deeply understand your content — including text, tables, and images — uncovering business value that may be hidden within your enterprise data. In addition to Watson Discovery, this deployable architecture includes optional tools for key encryption, observability, and account resources to help you manage your Watson Discovery deployment.",
       "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/blob/main/README.md",
       "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/main/images/watson-discovery.svg",
       "provider_name": "IBM",
       "features": [
         {
           "title": "Watson Discovery instance",
-          "description": "Provision and configure an instance of IBM Watson Discovery. Explore more about IBM Watson Discovery [here](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-about)"
+          "description": "Get started with Watson Discovery by creating and configuring an instance. [Learn more](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-about)."
         },
         {
           "title": "Optional observability tools",
@@ -69,14 +69,14 @@
                 "crn:v1:bluemix:public:iam::::role:Administrator"
               ],
               "service_name": "All Account Management services",
-              "notes": "[Optional] Required for consuming Account Configuration deployable architecture which creates resource group."
+              "notes": "[Optional] Required to deploy Cloud automation for account configuration, which creates foundational IBM Cloud account resources, like IAM settings, trusted profiles, access groups, and resource groups."
             },
             {
               "role_crns": [
                 "crn:v1:bluemix:public:iam::::role:Administrator"
               ],
               "service_name": "All Identity and Access enabled services",
-              "notes": "[Optional] Required for consuming Account Configuration deployable architecture which creates resource group with account settings."
+              "notes": "[Optional] Required to deploy Cloud automation for account configuration, which creates foundational IBM Cloud account resources, like IAM settings, trusted profiles, access groups, and resource group with account settings."
             },
             {
               "role_crns": [
@@ -91,7 +91,7 @@
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "kms",
-              "notes": "[Optional] Required for enabling Cloud automation of Key Protect in the Observability deployable architecture."
+              "notes": "[Optional] Required to deploy Cloud automation for Key Protect, so you can use your own managed encryption keys."
             },
             {
               "role_crns": [
@@ -99,7 +99,7 @@
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "hs-crypto",
-              "notes": "[Optional] Required for enabling Hyper Protect Crypto Services in the Observability deployable architecture used for Event Routing and Cloud Logs."
+              "notes": "[Optional] Required if Hyper Protect Crypto Services is used in Cloud automation for Observability."
             },
             {
               "role_crns": [
@@ -107,7 +107,7 @@
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "atracker",
-              "notes": "[Optional] Required for configuring Activity Tracker event routing to Object Storage bucket and enabling Cloud Logs through the Observability deployable architecture."
+              "notes": "[Optional] Required to configure Activity Tracker Event Routing with Cloud automation for Observability."
             },
             {
               "role_crns": [
@@ -115,7 +115,7 @@
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "sysdig-monitor",
-              "notes": "[Optional] Required if you are consuming the Observability deployable architecture which sets up Cloud Monitoring."
+              "notes": "[Optional] Required to create an instance of Cloud Monitoring."
             },
             {
               "role_crns": [
@@ -123,7 +123,7 @@
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "logs",
-              "notes": "[Optional] Required if you are consuming the Observability deployable architecture which sets up Cloud Logs."
+              "notes": "[Optional] Required to create an instance of Cloud Logs."
             },
             {
               "role_crns": [
@@ -131,14 +131,14 @@
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "cloud-object-storage",
-              "notes": "[Optional] Required if you are deploying Cloud automation for Object Storage."
+              "notes": "[Optional] Required to deploy Cloud automation for Object Storage."
             }
           ],
           "architecture": {
             "features": [
               {
                 "title": " ",
-                "description": "Configured to use IBM secure by default standards, but can be edited to fit your use case."
+                "description": "Configured to use IBM secure-by-default standards, but can be edited to fit your use case."
               }
             ],
             "diagrams": [
@@ -148,7 +148,7 @@
                   "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/main/reference-architecture/deployable-architecture-watson-discovery.svg",
                   "type": "image/svg+xml"
                 },
-                "description": "This solution deploys a <b>Watson Discovery</b> instance on IBM Cloud, with optional integration of additional services to support enterprise-grade requirements.<br><br>Once the instance is successfully created, you will receive access to the Discovery dashboard, where you can begin connecting data sources and building AI - powered search projects. <br><br>Optionally, you can integrate IBM Cloud Observability resources. Cloud automation for Observability provides robust monitoring and logging capabilities to deliver deep operational insights into your Watson Discovery deployment. You can use IBM Cloud Activity Tracker Event Routing to monitor how users and applications interact with Watson Discovery, supporting compliance and auditability. IBM Cloud Logs can be enabled to collect, view, and analyze platform logs related to key Watson Discovery components. Furthermore, IBM Cloud Monitoring captures essential metrics such as CPU and memory utilization, helping you proactively monitor system performance and resource consumption."
+                "description": "This deployable architecture provisions a Watson Discovery instance on IBM Cloud, with optional tools to support enterprise-grade requirements.<br><br>After the instance is created, you receive access to the Discovery dashboard, where you can begin connecting data sources and building AI-powered search projects. <br><br>Optionally, you can deploy IBM Cloud observability resources. Cloud automation for Observability provides robust monitoring and logging capabilities to deliver deep operational insights into your Watson Discovery deployment. You can use IBM Cloud Activity Tracker Event Routing to monitor how users and applications interact with Watson Discovery, supporting compliance and auditability. Enable IBM Cloud Logs to collect, view, and analyze platform logs related to key Watson Discovery components. While IBM Cloud Monitoring captures essential metrics such as CPU and memory usage, helping you proactively monitor system performance and resource consumption."
               }
             ]
           },
@@ -205,30 +205,31 @@
             },
             {
               "key": "enable_platform_metrics",
-              "type": "string",
-              "default_value": "true",
-              "description": "When set to `true`, the IBM Cloud Monitoring instance is configured to collect platform metrics from the specified region. ⚠️ You can configure only one instance of the IBM Cloud Monitoring service per region to collect platform metrics in that location. Check with the account or service administrator if another monitoring instance is already configured. You might not have permissions to see all monitoring instances in the region. [Learn more](https://cloud.ibm.com/docs/monitoring?topic=monitoring-platform_metrics_enabling).",
+              "type": "boolean",
+              "default_value": false,
+              "description": "When set to `true`, the IBM Cloud Monitoring instance is configured to collect platform metrics from the specified region. You can configure only one instance of the IBM Cloud Monitoring service per region to collect platform metrics in that location. Check with the account or service administrator if another monitoring instance is already configured. You might not have permissions to see all monitoring instances in the region. [Learn more](https://cloud.ibm.com/docs/monitoring?topic=monitoring-platform_metrics_enabling).",
               "required": true,
               "virtual": true,
               "options": [
                 {
                   "displayname": "true",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "false",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
             {
               "key": "logs_routing_tenant_regions",
-              "type": "list(string)",
-              "default_value": "[]",
+              "type": "array",
+              "default_value": [],
               "description": "To manage platform logs that are generated by IBM Cloud services in a region of IBM Cloud, you must create a tenant in each region that you operate. Pass a list of regions to create a tenant in. [Learn more](https://cloud.ibm.com/docs/logs-router?topic=logs-router-about-platform-logs).",
               "required": true,
               "virtual": true,
               "custom_config": {
+                "type": "array",
                 "grouping": "deployment",
                 "original_grouping": "deployment",
                 "config_constraints": {
@@ -272,6 +273,7 @@
             {
               "key": "resource_tags",
               "custom_config": {
+                "type": "array",
                 "grouping": "deployment",
                 "original_grouping": "deployment",
                 "config_constraints": {

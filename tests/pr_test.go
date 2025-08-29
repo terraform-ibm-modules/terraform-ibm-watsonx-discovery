@@ -8,6 +8,7 @@ import (
 	"os"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/gruntwork-io/terratest/modules/files"
 	"github.com/gruntwork-io/terratest/modules/logger"
@@ -230,8 +231,11 @@ func TestDefaultConfiguration(t *testing.T) {
 func TestDependencyPermutations(t *testing.T) {
 
 	options := testaddons.TestAddonsOptionsDefault(&testaddons.TestAddonOptions{
-		Testing: t,
-		Prefix:  "wxdy-perm",
+		Testing:          t,
+		Prefix:           "wxdy-perm",
+		StaggerDelay:     testaddons.StaggerDelay(20 * time.Second),    // 20s delay between batches
+		StaggerBatchSize: testaddons.StaggerBatchSize(4),               // 4 tests per batch
+		WithinBatchDelay: testaddons.WithinBatchDelay(8 * time.Second), // 8s delay within batch
 		AddonConfig: cloudinfo.AddonConfig{
 			OfferingName:   "deploy-arch-ibm-watson-discovery",
 			OfferingFlavor: "fully-configurable",

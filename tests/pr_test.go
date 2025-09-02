@@ -10,6 +10,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/google/uuid"
 	"github.com/gruntwork-io/terratest/modules/files"
 	"github.com/gruntwork-io/terratest/modules/logger"
 	"github.com/gruntwork-io/terratest/modules/random"
@@ -205,11 +206,14 @@ func TestRunStandardUpgradeSolution(t *testing.T) {
 
 func TestDefaultConfiguration(t *testing.T) {
 	t.Parallel()
+	sharedInfoSvc, _ = cloudinfo.NewCloudInfoServiceFromEnv("TF_VAR_ibmcloud_api_key", cloudinfo.CloudInfoServiceOptions{})
+	prefix := "wxdydeft"
+	uniqueResourceGroup := generateUniqueResourceGroupName(prefix)
 
 	options := testaddons.TestAddonsOptionsDefault(&testaddons.TestAddonOptions{
 		Testing:       t,
-		Prefix:        "wxdydeft",
-		ResourceGroup: resourceGroup,
+		Prefix:        prefix,
+		ResourceGroup: uniqueResourceGroup,
 		QuietMode:     true, // Suppress logs except on failure
 	})
 
@@ -218,12 +222,14 @@ func TestDefaultConfiguration(t *testing.T) {
 		"deploy-arch-ibm-watson-discovery",
 		"fully-configurable",
 		map[string]interface{}{
-			"prefix":                       "wxdydeft",
-			"existing_resource_group_name": resourceGroup,
+			"prefix":                       prefix,
+			"existing_resource_group_name": uniqueResourceGroup,
 		},
 	)
 
-	err := options.RunAddonTest()
+	err := sharedInfoSvc.WithNewResourceGroup(uniqueResourceGroup, func() error {
+		return options.RunAddonTest()
+	})
 	require.NoError(t, err)
 }
 
@@ -250,4 +256,9 @@ func TestDependencyPermutations(t *testing.T) {
 
 	err := options.RunAddonPermutationTest()
 	assert.NoError(t, err, "Dependency permutation test should not fail")
+}
+
+func generateUniqueResourceGroupName(baseName string) string {
+	id := uuid.New().String()[:8]
+	return fmt.Sprintf("%s-%s", baseName, id)
 }

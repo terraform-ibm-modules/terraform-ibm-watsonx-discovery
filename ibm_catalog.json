@@ -153,7 +153,7 @@
               {
                 "diagram": {
                   "caption": "Watson Discovery on IBM Cloud",
-                  "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/main/reference-architecture/deployable-architecture-watson-discovery.svg",
+                  "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/main/reference-architectures/deployable-architecture-watson-discovery.svg",
                   "type": "image/svg+xml"
                 },
                 "description": "This deployable architecture provisions a Watson Discovery instance on IBM Cloud, with optional tools to support enterprise-grade requirements.<br><br>After the instance is created, you receive access to the Discovery dashboard, where you can begin connecting data sources and building AI-powered search projects. <br><br>Optionally, you can deploy IBM Cloud observability resources. Cloud automation for Observability provides robust monitoring and logging capabilities to deliver deep operational insights into your Watson Discovery deployment. You can use IBM Cloud Activity Tracker Event Routing to monitor how users and applications interact with Watson Discovery, supporting compliance and auditability. Enable IBM Cloud Logs to collect, view, and analyze platform logs related to key Watson Discovery components. While IBM Cloud Monitoring captures essential metrics such as CPU and memory usage, helping you proactively monitor system performance and resource consumption."

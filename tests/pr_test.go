@@ -8,8 +8,8 @@ import (
 	"os"
 	"strings"
 	"testing"
-	"time"
 
+	"github.com/IBM/go-sdk-core/core"
 	"github.com/gruntwork-io/terratest/modules/files"
 	"github.com/gruntwork-io/terratest/modules/logger"
 	"github.com/gruntwork-io/terratest/modules/random"
@@ -22,13 +22,15 @@ import (
 	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/common"
 	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/testaddons"
 	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/testhelper"
+	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/testschematic"
 )
 
 // Use existing resource group
 const resourceGroup = "geretain-test-resources"
 const basicExampleDir = "examples/basic"
 const existingExampleDir = "examples/existing-instance"
-const standardSolutionTerraformDir = "solutions/fully-configurable"
+const fullyConfigurableSolutionTerraformDir = "solutions/fully-configurable"
+const terraformVersion = "terraform_v1.10" // This should match the version in the ibm_catalog.json
 
 // Define a struct with fields that match the structure of the YAML data
 const yamlLocation = "../common-dev-assets/common-go-assets/common-permanent-resources.yaml"
@@ -151,55 +153,51 @@ func TestRunExistingResourcesExample(t *testing.T) {
 	}
 }
 
-func TestRunStandardSolution(t *testing.T) {
-	t.Parallel()
-
-	options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
-		Testing:       t,
-		TerraformDir:  standardSolutionTerraformDir,
-		Region:        validRegions[rand.Intn(len(validRegions))],
-		Prefix:        "wxdi-da",
-		ResourceGroup: resourceGroup,
+func setupFullyConfigurableOptions(t *testing.T, prefix string) *testschematic.TestSchematicOptions {
+	options := testschematic.TestSchematicOptionsDefault(&testschematic.TestSchematicOptions{
+		Testing:        t,
+		TemplateFolder: fullyConfigurableSolutionTerraformDir,
+		Region:         validRegions[rand.Intn(len(validRegions))],
+		Prefix:         prefix,
+		TarIncludePatterns: []string{
+			"*.tf",
+			fullyConfigurableSolutionTerraformDir + "/*.tf",
+		},
+		ResourceGroup:    resourceGroup,
+		TerraformVersion: terraformVersion,
 	})
 
-	options.TerraformVars = map[string]interface{}{
-		"service_plan":                 "plus",
-		"service_endpoints":            "public",
-		"existing_resource_group_name": resourceGroup,
-		"provider_visibility":          "public",
-		"prefix":                       options.Prefix,
-		"region":                       options.Region,
+	options.TerraformVars = []testschematic.TestSchematicTerraformVar{
+		{Name: "ibmcloud_api_key", Value: options.RequiredEnvironmentVars["TF_VAR_ibmcloud_api_key"], DataType: "string", Secure: true},
+		{Name: "prefix", Value: options.Prefix, DataType: "string"},
+		{Name: "region", Value: options.Region, DataType: "string"},
+		{Name: "existing_resource_group_name", Value: resourceGroup, DataType: "string"},
+		{Name: "provider_visibility", Value: "private", DataType: "string"},
+		{Name: "service_plan", Value: "plus", DataType: "string"},
+		{Name: "service_endpoints", Value: "private", DataType: "string"},
 	}
-
-	output, err := options.RunTestConsistency()
-	assert.Nil(t, err, "This should not have errored")
-	assert.NotNil(t, output, "Expected some output")
+	return options
 }
 
-func TestRunStandardUpgradeSolution(t *testing.T) {
+// Test the DA
+func TestRunFullyConfigurableSolutionSchematics(t *testing.T) {
 	t.Parallel()
 
-	options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
-		Testing:       t,
-		TerraformDir:  standardSolutionTerraformDir,
-		Region:        validRegions[rand.Intn(len(validRegions))],
-		Prefix:        "wdi-da-ug",
-		ResourceGroup: resourceGroup,
-	})
+	options := setupFullyConfigurableOptions(t, "wxdi-da")
 
-	options.TerraformVars = map[string]interface{}{
-		"service_plan":                 "plus",
-		"service_endpoints":            "public",
-		"existing_resource_group_name": resourceGroup,
-		"provider_visibility":          "public",
-		"prefix":                       options.Prefix,
-		"region":                       options.Region,
-	}
+	err := options.RunSchematicTest()
+	assert.Nil(t, err, "This should not have errored")
+}
 
-	output, err := options.RunTestUpgrade()
+func TestRunFullyConfigurableUpgradeSolutionSchematics(t *testing.T) {
+	t.Parallel()
+
+	options := setupFullyConfigurableOptions(t, "wxdi-up")
+	options.CheckApplyResultForUpgrade = true
+
+	err := options.RunSchematicUpgradeTest()
 	if !options.UpgradeTestSkipped {
 		assert.Nil(t, err, "This should not have errored")
-		assert.NotNil(t, output, "Expected some output")
 	}
 }
 
@@ -223,31 +221,26 @@ func TestDefaultConfiguration(t *testing.T) {
 		},
 	)
 
-	err := options.RunAddonTest()
-	require.NoError(t, err)
-}
-
-// TestDependencyPermutations runs dependency permutations for watsonx discovery and all its dependencies
-func TestDependencyPermutations(t *testing.T) {
-	t.Skip("Skipping dependency permutations")
-	t.Parallel()
-
-	options := testaddons.TestAddonsOptionsDefault(&testaddons.TestAddonOptions{
-		Testing:          t,
-		Prefix:           "wxdy-perm",
-		StaggerDelay:     testaddons.StaggerDelay(20 * time.Second),    // 20s delay between batches
-		StaggerBatchSize: testaddons.StaggerBatchSize(4),               // 4 tests per batch
-		WithinBatchDelay: testaddons.WithinBatchDelay(8 * time.Second), // 8s delay within batch
-		AddonConfig: cloudinfo.AddonConfig{
-			OfferingName:   "deploy-arch-ibm-watson-discovery",
+	// Disable target / route creation to prevent hitting quota in account
+	options.AddonConfig.Dependencies = []cloudinfo.AddonConfig{
+		{
+			OfferingName:   "deploy-arch-ibm-cloud-monitoring",
 			OfferingFlavor: "fully-configurable",
 			Inputs: map[string]interface{}{
-				"prefix":                       "wxdy-perm",
-				"existing_resource_group_name": resourceGroup,
+				"enable_metrics_routing_to_cloud_monitoring": false,
 			},
+			Enabled: core.BoolPtr(true),
 		},
-	})
+		{
+			OfferingName:   "deploy-arch-ibm-activity-tracker",
+			OfferingFlavor: "fully-configurable",
+			Inputs: map[string]interface{}{
+				"enable_activity_tracker_event_routing_to_cloud_logs": false,
+			},
+			Enabled: core.BoolPtr(true),
+		},
+	}
 
-	err := options.RunAddonPermutationTest()
-	assert.NoError(t, err, "Dependency permutation test should not fail")
+	err := options.RunAddonTest()
+	require.NoError(t, err)
 }

@@ -16,7 +16,7 @@ locals {
 module "crn_parser" {
   count   = var.existing_watson_discovery_instance_crn != null ? 1 : 0
   source  = "terraform-ibm-modules/common-utilities/ibm//modules/crn-parser"
-  version = "1.2.0"
+  version = "1.3.0"
   crn     = var.existing_watson_discovery_instance_crn
 }
 

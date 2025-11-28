@@ -25,7 +25,7 @@
         "ai"
       ],
       "short_description": "Creates and configures an instance of IBM Watson Discovery",
-      "long_description": "[IBM Watson Discovery](https://www.ibm.com/products/watson-discovery) is an intelligent document processing engine designed to extract valuable insights from complex business documents. With Discovery, you can visually train AI models to deeply understand your content — including text, tables, and images — uncovering business value that may be hidden within your enterprise data. In addition to Watson Discovery, this deployable architecture includes optional tools for key encryption, observability, and account resources to help you manage your Watson Discovery deployment.",
+      "long_description": "[IBM Watson Discovery](https://www.ibm.com/products/watson-discovery) is an intelligent document processing engine designed to extract valuable insights from complex business documents. With Discovery, you can visually train AI models to deeply understand your content — including text, tables, and images — uncovering business value that may be hidden within your enterprise data. In addition to Watson Discovery, this deployable architecture includes optional tools for key encryption, observability, and account resources to help you manage your Watson Discovery deployment. \n\nLeverage [Terraform IBM Modules](https://github.com/terraform-ibm-modules) to shape and scale your solutions. You can integrate Terraform IBM Modules (TIM) to extend functionality and design a solution tailored to your environment and operations needs. These modules offer reusable, customizable elements that follow IBM Cloud's recommended practices. You can access the [source code and documentation](https://github.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery) and use it to extend your current architecture or create new solutions.",
       "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/blob/main/README.md",
       "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/main/images/watson-discovery.svg",
       "provider_name": "IBM",
@@ -45,6 +45,10 @@
         {
           "title": "Sets up activity tracking for the Watson Discovery instance",
           "description": "Optionally, you can deploy Cloud automation for Activity Tracker Event Routing to route and securely store auditing events that are related to your Watson Discovery instance. [Learn more](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-at_events)"
+        },
+        {
+          "title": "Composable and Extensible Architecture",
+          "description": "This architecture illustrates how Terraform IBM Modules(TIM) can be integrated to deliver a complete solution on IBM Cloud. Each module is a reusable, and validated component for security, compliance, and operational IBM best practices. You can deploy this architecture as-is or configure it as code by leveraging the underlying modules to fit your specific requirements. Explore the [source code and documentation](https://github.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery) to adapt, extend, or create entirely new solutions using these building blocks."
         }
       ],
       "support_details": "This product is in the community registry, support is handled through the [original repo](https://github.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery). If you experience issues kindly open an issue [here](https://github.com/terraform-ibm-modules/terraform-ibm-watsonx-discovery/issues). Please note that this product is not currently supported through the IBM Cloud Support Center.",

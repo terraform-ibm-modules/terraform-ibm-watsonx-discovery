@@ -66,20 +66,21 @@ variable "watson_discovery_name" {
 }
 
 variable "plan" {
-  description = "The Watson Discovery plan to create an instance of Watson Discovery. Possible values are `plus` or `enterprise`."
+  description = "The Watson Discovery plan to create an instance of Watson Discovery. Possible values are `plus`, `enterprise` or `premium`."
   type        = string
   default     = "plus"
 
   validation {
     condition     = var.existing_watson_discovery_instance_crn != null || var.plan != null
-    error_message = "The plan must be provided to create the Watson Discovery instance. Possible values are `plus` or `enterprise`."
+    error_message = "The plan must be provided to create the Watson Discovery instance. Possible values are `plus` , `enterprise` or `premium`."
   }
   validation {
     condition = anytrue([
       var.plan == "plus",
-      var.plan == "enterprise"
+      var.plan == "enterprise",
+      var.plan == "premium"
     ]) || var.existing_watson_discovery_instance_crn != null
-    error_message = "A new watson Discovery instance requires a 'plus' or 'enterprise' plan. [Learn more](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-pricing-plans)."
+    error_message = "A new Watson Discovery instance requires a 'plus', 'enterprise' or 'premium' plan. [Learn more](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-pricing-plans)."
   }
 }
 

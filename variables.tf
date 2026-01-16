@@ -66,7 +66,7 @@ variable "watson_discovery_name" {
 }
 
 variable "plan" {
-  description = "The Watson Discovery plan to create an instance of Watson Discovery. Possible values are `plus` , `enterprise` or `premium`."
+  description = "The Watson Discovery plan to create an instance of Watson Discovery. Possible values are `plus`, `enterprise` or `premium`."
   type        = string
   default     = "plus"
 

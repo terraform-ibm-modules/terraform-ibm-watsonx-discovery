@@ -80,7 +80,7 @@ variable "plan" {
       var.plan == "enterprise",
       var.plan == "premium"
     ]) || var.existing_watson_discovery_instance_crn != null
-    error_message = "A new watson Discovery instance requires a 'plus', 'enterprise' or 'premium' plan. [Learn more](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-pricing-plans)."
+    error_message = "A new Watson Discovery instance requires a 'plus', 'enterprise' or 'premium' plan. [Learn more](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-pricing-plans)."
   }
 }
 

@@ -131,7 +131,7 @@ statement instead the previous block.
 |------|-------------|------|---------|:--------:|
 | <a name="input_access_tags"></a> [access\_tags](#input\_access\_tags) | A list of access tags to apply to the Watson Discovery instance. [Learn more](https://cloud.ibm.com/docs/account?topic=account-access-tags-tutorial). | `list(string)` | `[]` | no |
 | <a name="input_existing_watson_discovery_instance_crn"></a> [existing\_watson\_discovery\_instance\_crn](#input\_existing\_watson\_discovery\_instance\_crn) | The CRN of an existing Watson Discovery instance. If not provided, a new instance is created. | `string` | `null` | no |
-| <a name="input_plan"></a> [plan](#input\_plan) | The Watson Discovery plan to create an instance of Watson Discovery. Possible values are `plus` , `enterprise` or `premium`. | `string` | `"plus"` | no |
+| <a name="input_plan"></a> [plan](#input\_plan) | The Watson Discovery plan to create an instance of Watson Discovery. Possible values are `plus`, `enterprise` or `premium`. | `string` | `"plus"` | no |
 | <a name="input_region"></a> [region](#input\_region) | The region for the Watson Discovery instance. Required to create an instance of Watson Discovery. | `string` | `"us-south"` | no |
 | <a name="input_resource_group_id"></a> [resource\_group\_id](#input\_resource\_group\_id) | The resource group ID for the Watson Discovery instance. Required to create an instance of Watson Discovery. | `string` | `null` | no |
 | <a name="input_resource_tags"></a> [resource\_tags](#input\_resource\_tags) | Optional list of tags to describe the Watson Discovery instance. | `list(string)` | `[]` | no |

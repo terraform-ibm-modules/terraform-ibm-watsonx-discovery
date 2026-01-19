@@ -209,7 +209,7 @@
                 {
                   "displayname": "Premium",
                   "value": "premium",
-                  "description": "Allows the highest level of security with a dedicated setup. You have to contact IBM Sales to use this plan."
+                  "description": "Allows the highest level of security with a dedicated setup. Accessing this plan requires contacting an IBM sales representative."
                 }
               ]
             },

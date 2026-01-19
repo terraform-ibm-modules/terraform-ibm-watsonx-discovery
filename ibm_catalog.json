@@ -199,12 +199,12 @@
                 {
                   "displayname": "Plus",
                   "value": "plus",
-                  "description": "Allows basic document processing like OCR, text analysis, table extraction, and data connections."
+                  "description": "Allows basic document processing such as OCR, text analysis, table extraction, and data connections."
                 },
                 {
                   "displayname": "Enterprise",
                   "value": "enterprise",
-                  "description": "Allows everything in Plus, with extra analysis features for larger workloads."
+                  "description": "Allows advanced document analysis features designed for larger workloads."
                 },
                 {
                   "displayname": "Premium",

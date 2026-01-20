@@ -194,14 +194,22 @@
             },
             {
               "key": "service_plan",
+              "type": "string",
               "options": [
                 {
                   "displayname": "Plus",
-                  "value": "plus"
+                  "value": "plus",
+                  "description": "Allows basic document processing such as OCR, text analysis, table extraction, and data connections."
                 },
                 {
                   "displayname": "Enterprise",
-                  "value": "enterprise"
+                  "value": "enterprise",
+                  "description": "Allows advanced document analysis features designed for larger workloads."
+                },
+                {
+                  "displayname": "Premium",
+                  "value": "premium",
+                  "description": "Allows the highest level of security with a dedicated setup. Accessing this plan requires contacting an IBM sales representative."
                 }
               ]
             },

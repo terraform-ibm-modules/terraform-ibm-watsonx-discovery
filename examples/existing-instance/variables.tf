@@ -15,6 +15,6 @@ variable "existing_watson_discovery_instance_crn" {
 
 variable "access_tags" {
   type        = list(string)
-  description = "Optional list of access management tags to add to the Watson Discovery instance"
+  description = "Add access management tags to the Watsonx Discovery instance to control access. [Learn more](https://cloud.ibm.com/docs/account?topic=account-tag&interface=ui#create-access-console)."
   default     = []
 }

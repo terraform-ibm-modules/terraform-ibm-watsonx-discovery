@@ -48,7 +48,13 @@ resource "ibm_resource_instance" "watson_discovery_instance" {
 # Attach Access Tags
 ########################################################################################################################
 
+data "ibm_iam_access_tag" "access_tag" {
+  for_each = length(var.access_tags) != 0 ? toset(var.access_tags) : []
+  name     = each.value
+}
+
 resource "ibm_resource_tag" "watson_discovery_tag" {
+  depends_on  = [data.ibm_iam_access_tag.access_tag]
   count       = length(var.access_tags) == 0 ? 0 : 1
   resource_id = var.existing_watson_discovery_instance_crn != null ? var.existing_watson_discovery_instance_crn : ibm_resource_instance.watson_discovery_instance[0].crn
   tags        = var.access_tags

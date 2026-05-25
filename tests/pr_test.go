@@ -205,7 +205,6 @@ func TestRunFullyConfigurableUpgradeSolutionSchematics(t *testing.T) {
 }
 
 func TestDefaultConfiguration(t *testing.T) {
-	t.Skip() // To be removed
 	t.Parallel()
 
 	options := testaddons.TestAddonsOptionsDefault(&testaddons.TestAddonOptions{
